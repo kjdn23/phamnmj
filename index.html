@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Teachers' Day</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* --- BODY --- */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #3399ff, #ff66cc);
+      background-size: 400% 400%;
+      animation: bgGradient 12s ease infinite;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      color: #222;
+    }
+
+    @keyframes bgGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* --- HEADER --- */
+    header {
+      background: rgba(238, 162, 248, 0.8);
+      color: #fff4fb;
+      padding: 20px;
+      font-size: 4em;
+      font-weight: 700;
+      font-family: 'Comic Neue', sans-serif;
+      text-shadow: 0 0 5px #ff66cc, 0 0 10px #66ccff;
+      border-bottom: 4px dashed #ff66cc;
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* --- CONTAINER --- */
+    .container {
+      max-width: 650px;
+      margin: 20px auto;
+      padding: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* --- MESSAGE BOX --- */
+    .message {
+      background-color: rgba(255, 255, 255, 0.85);
+      border: 2px dashed #ff66cc;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+      line-height: 1.6em;
+      font-size: 1.1em;
+      font-family: 'Comic Neue', sans-serif;
+      border-radius: 15px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .message::before {
+      content: "";
+      position: absolute;
+      top: 10px; bottom: 10px; left: 15px; right: 15px;
+      border-left: 1px dashed #ff66cc;
+      border-right: 1px dashed #ff66cc;
+      pointer-events: none;
+    }
+
+    /* --- MUSIC BUTTON --- */
+    .music-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .music-btn {
+      background: #66ccff;
+      color: white;
+      border: 2px solid #3399ff;
+      padding: 8px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95em;
+      transition: transform 0.2s, background 0.2s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .music-btn:hover {
+      background: #3399ff;
+      transform: scale(1.1);
+    }
+
+    /* --- MAIN IMAGE --- */
+    img.main-img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    /* --- FLOATING IMAGES --- */
+    .floating-img {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.7;
+      animation-name: floatUp;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+      50% { transform: translateY(-500px) rotate(180deg) scale(1.1); opacity: 0.9; }
+      100% { transform: translateY(-1200px) rotate(360deg) scale(0.9); opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>🌎Happy Teachers Day🎤</header>
+
+  <div class="container">
+    <div class="message">
+      Hi ma'am Pham and sir MJ!! HAPPY TEACHERS DAY PO SAINYONG DALAWA! I just want to say na thank you so much po for doing your best to teach us and hindi kayo napapagod kakaturo po saamin! (di ko po alam kung napapagod kayo kakaturo samin)  
+      I know po na pasaway po kami minsan sainyo maingay, magulo and magulo AHAHAHAHA but we will do our best to achieve higher grades to show that all your teachings didn't go to waste! Anyway Happy Teachers Day po again!! <3<3<3  
+      <br><br>
+      From: Karl  
+      <div class="music-controls">
+        <button class="music-btn" onclick="toggleMusic(true)">Play Music :]</button>
+        <button class="music-btn" onclick="toggleMusic(false)">Stop Music</button>
+      </div>
+    </div>
+
+    <img src="phamj.png" alt="Teachers Day Celebration" class="main-img">
+  </div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="Taylor Swift - Lover (Official Music Video) - Taylor Swift (youtube).mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="floating-container"></div>
+
+  <script>
+    function toggleMusic(play) {
+      const music = document.getElementById("bg-music");
+      if(play) music.play();
+      else music.pause();
+    }
+
+    const floatingContainer = document.getElementById('floating-container');
+    const floatingPNGs = ["mjp.png", "mjph.png", "mj.png", "pham.png"];
+
+    for(let i=0; i<12; i++){
+      const img = document.createElement('img');
+      img.src = floatingPNGs[i % floatingPNGs.length];
+      img.classList.add('floating-img');
+      floatingContainer.appendChild(img);
+
+      // Start from bottom of viewport
+      const startTop = window.innerHeight + Math.random()*150;
+      img.style.top = startTop + "px";
+      img.style.left = Math.random()*85 + "vw";
+      img.style.width = 80 + Math.random()*70 + "px";
+      img.style.animationDuration = 10 + Math.random()*12 + "s";
+
+      img.addEventListener('animationiteration', ()=>{
+        img.style.top = window.innerHeight + Math.random()*150 + "px";
+        img.style.left = Math.random()*85 + "vw";
+        img.style.width = 80 + Math.random()*70 + "px";
+        img.style.animationDuration = 10 + Math.random()*12 + "s";
+      });
+    }
+  </script>
+
+</body>
+</html>
